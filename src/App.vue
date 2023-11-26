@@ -31,11 +31,13 @@ import { routes } from "./router/index";
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    border-right: 1px solid #e9e9e9;
 
     button {
       margin: 12px;
       cursor: pointer;
     }
+
     .hl {
       background-color: #baf;
     }
@@ -44,7 +46,6 @@ import { routes } from "./router/index";
   .rv {
     width: calc(100% - 72px);
     height: 100%;
-    border: 1px solid #e9e9e9;
     padding: 12px;
   }
 }

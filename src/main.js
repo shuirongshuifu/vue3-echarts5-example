@@ -12,6 +12,9 @@ for (const name in ElIcons) {
     app.component(name, ElIcons[name])
 }
 
+import install from './directives' // 引入并使用自定义指令
+app.use(install)
+
 app.use(router)
 app.use(ElementPlus)
 
