@@ -1,0 +1,14 @@
+/* 固定el-table添加的样式 */
+.fixedElTable {
+    position: fixed;
+    top: 0;
+}
+
+/* 固定H1元素添加的样式 */
+.fixedH1Dom {
+    position: fixed;
+    top: 0;
+    box-shadow: rgba(113, 100, 100, 0.42) 0px 6px 20px;
+    border-bottom: 3px solid #79BBFF;
+    box-sizing: border-box;
+}

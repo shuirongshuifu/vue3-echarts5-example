@@ -7,6 +7,7 @@ import { watch, onMounted, onBeforeUnmount, shallowRef, defineEmits } from "vue"
 import * as echarts from "echarts";
 import debounce from 'lodash/debounce'
 
+// [@vue/compiler-sfc] `defineEmits` is a compiler macro and no longer needs to be imported.
 const emit = defineEmits(["click"])
 
 const props = defineProps({
