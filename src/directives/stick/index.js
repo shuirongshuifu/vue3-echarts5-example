@@ -1,3 +1,4 @@
+// 单独拎出来一个css文件，用于维护吸顶元素的样式
 import './index.css'
 
 // 计算距离顶部高度的元素，如el-table就是表格最外层容器元素以class为例
@@ -43,7 +44,7 @@ const removeFixed = () => {
 }
 
 const handle = (e) => {
-    console.log(147)
+    console.log(e)
     let topDistance = calcDom?.getBoundingClientRect().top || 0
     // 距离小于等于0，不在可视区域内时，添加固定定位吸顶
     if (topDistance <= 0) {

@@ -3,7 +3,7 @@
     <el-table v-stick="{
         calcDomClass: '.el-table',
         stickDomClass: '.el-table__header-wrapper',
-        fixedName: 'fixedElTable'
+        fixedName: 'fixedElTable',
     }" :data="tableData" border style="width: 100%" :header-cell-style="{ background: '#999', color: '#000' }">
         <el-table-column prop="name" label="姓名" width="180" />
         <el-table-column prop="age" label="年龄" width="180" />
@@ -31,11 +31,4 @@ const initData = () => {
     }
 }
 initData()
-
 </script>
-
-<style>
-.kkk {
-    width: calc();
-}
-</style>
