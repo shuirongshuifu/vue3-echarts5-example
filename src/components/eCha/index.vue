@@ -3,7 +3,9 @@
 </template>
   
 <script setup>
-import { watch, onMounted, onBeforeUnmount, shallowRef, defineEmits } from "vue";
+import { watch, onMounted, onBeforeUnmount, shallowRef, 
+    // defineEmits 
+} from "vue";
 import * as echarts from "echarts";
 import debounce from 'lodash/debounce'
 
