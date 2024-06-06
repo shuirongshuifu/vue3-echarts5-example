@@ -26,6 +26,11 @@ export const routes =  [
         name: "Shift多选(hook)",
         component: () => import('@/page/five/index.vue')
     },
+    {
+        path: "/six",
+        name: "driver.js示例",
+        component: () => import('@/page/six/index.vue')
+    },
 ]
 
 

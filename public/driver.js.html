@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver.js Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.js.iife.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css" />
+    <style>
+        li {
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="one">白日依山尽</li>
+        <li class="two">黄河入海流</li>
+        <li class="three">欲穷千里目</li>
+        <li class="four">更上一层楼</li>
+    </ul>
+
+    <button id="startTour">点击开始指引</button>
+
+    <script>
+        // 引入的cdn的driver.js挂在windows上，可直接用
+        const driver = window.driver.js.driver;
+        // 实例化对象，传相应参数
+        const driverObj = driver({
+            showProgress: true,
+            steps: [
+                { element: '.one', popover: { title: '第一步', description: '阅读001' } },
+                { element: '.two', popover: { title: '第二步', description: '阅读002' } },
+                { element: '.three', popover: { title: '第三步', description: '阅读003' } },
+                { element: '.four', popover: { title: '第四步', description: '阅读004' } },
+            ]
+        });
+        document.getElementById('startTour').addEventListener('click', function () {
+            driverObj.drive();
+        });
+        // 官网：https://driverjs.com/
+    </script>
+</body>
+
+</html>
