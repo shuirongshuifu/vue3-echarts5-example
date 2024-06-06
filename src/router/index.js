@@ -3,18 +3,28 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 export const routes =  [
     {
         path: "/",
-        name: "one",
+        name: "地图下钻",
         component: () => import('@/page/one/index.vue')
     },
     {
         path: "/two",
-        name: "two",
+        name: "表头吸顶",
         component: () => import('@/page/two/index.vue')
     },
     {
         path: "/three",
-        name: "three",
+        name: "元素吸顶",
         component: () => import('@/page/three/index.vue')
+    },
+    {
+        path: "/four",
+        name: "Shift多选(普通)",
+        component: () => import('@/page/four/index.vue')
+    },
+    {
+        path: "/five",
+        name: "Shift多选(hook)",
+        component: () => import('@/page/five/index.vue')
     },
 ]
 

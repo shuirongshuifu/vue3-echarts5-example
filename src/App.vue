@@ -26,7 +26,7 @@ import { routes } from "./router/index";
   display: flex;
 
   .nav {
-    width: 72px;
+    width: 150px;
     height: 100%;
     box-sizing: border-box;
     display: flex;
@@ -34,8 +34,9 @@ import { routes } from "./router/index";
     border-right: 1px solid #e9e9e9;
 
     button {
-      margin: 12px;
+      margin: 6px;
       cursor: pointer;
+      padding: 2px;
     }
 
     .hl {
