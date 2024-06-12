@@ -4,4 +4,6 @@ export function IsPhone() {
     var isPhone = /mobile/i.test(info);
     return isPhone;
 }
+
+// 
     

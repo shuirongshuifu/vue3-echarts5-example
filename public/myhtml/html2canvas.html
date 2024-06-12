@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>截图</title>
+    <!-- 引入html2canvas库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
+    <style>
+        ul {
+            background-color: pink;
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="target">
+        <li>白日依山尽</li>
+        <li>黄河入海流</li>
+        <li>欲穷千里目</li>
+        <li>更上一层楼</li>
+    </ul>
+    <button>一键截图并下载</button>
+    <hr>
+    <script>
+        function takeScreenshot(elementId, fileName) {
+            var element = document.getElementById(elementId);
+            html2canvas(element).then(function (canvas) {
+                // 将canvas转换为data URL
+                var dataURL = canvas.toDataURL("image/png");
+                // 创建一个img元素来显示截图
+                var img = document.createElement('img');
+                // 指定图片地址 
+                img.src = dataURL;
+                // 将截图结果显示在页面上
+                document.body.appendChild(img);
+                // 并且下载
+                downloadImage(dataURL, fileName);
+            }).catch(function (error) {
+                console.error('Error while taking screenshot:', error);
+            });
+        }
+
+        function downloadImage(dataURL, fileName = 'screenshot.png') {
+            // 创建隐藏的可下载链接
+            var downloadLink = document.createElement("a");
+            downloadLink.href = dataURL;
+            downloadLink.download = fileName; // 设置默认文件名
+            // 隐藏链接
+            downloadLink.style.display = 'none';
+            document.body.appendChild(downloadLink);
+            // 触发点击
+            downloadLink.click();
+            // 稍后移除链接
+            setTimeout(function () {
+                document.body.removeChild(downloadLink);
+            }, 0);
+        }
+
+        document.querySelector('button').onclick = () => {
+            takeScreenshot('target', '下载');
+        }
+
+    </script>
+</body>
+
+</html>

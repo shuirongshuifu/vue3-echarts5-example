@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>{aaa}</h1>
+    <h2>{bbb}</h2>
+    <h3>{ccc}</h3>
+    <h4>唐僧</h4>
+    <script>
+        // 判断是否有花括号
+        function isHaveKuoHao(str) {
+            if (str[0] == '{' && str.at(-1) == '}') {
+                return true
+            } else {
+                return false
+            }
+        }
+        // 提取花括号中的内容，也就是key
+        function getKuoHaoKey(str) {
+            let key = str.split('{')[1].split('}')[0]
+            return key
+        }
+        // data数据函数
+        window.data = function () {
+            return {
+                aaa: '孙悟空',
+                bbb: '猪八戒',
+                ccc: '沙和尚'
+            }
+        }
+        // 获取所有body的元素标签
+        const bodyChildren = document.body.children;
+        // 遍历操作
+        for (const dom of bodyChildren) {
+            // 排除掉script标签
+            if (dom.tagName != 'SCRIPT') {
+                // 包含双花括号的
+                if (isHaveKuoHao(dom.innerHTML)) {
+                    // 提取花括号中的内容，就是字段key
+                    let key = getKuoHaoKey(dom.innerHTML)
+                    // data函数定义的字典
+                    let Dict = data()
+                    // 重新赋值，即改变了数据视图
+                    dom.innerHTML = Dict[key]
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

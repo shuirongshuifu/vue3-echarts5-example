@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3 :style="fn">新的一天，打工仔加油</h3>
+    <script>
+        /**
+         * window全局，注册一个中转函数，用来把传进来的函数执行一下
+         * */
+        window.mounted = function (cb) { cb() }
+
+        /**
+         * 定义对象，里面有很多函数，每一个函数的返回值，都是可以使用的样式
+         * */
+        const methods = {
+            fn() {
+                let conf = {
+                    background: 'pink',
+                    color: 'green'
+                }
+                return conf
+            },
+            fn1() {
+                let conf = {
+                    background: 'chocolate',
+                    color: 'deepskyblue'
+                }
+                return conf
+            },
+            fn2() {
+                let conf = {
+                    background: 'gray',
+                    color: 'yellowgreen'
+                }
+                return conf
+            },
+        }
+
+        /**
+         * 钩子函数
+         * */
+        mounted(() => {
+            // 选中dom
+            let h3Dom = document.querySelector('h3')
+            // 获取:style绑定的值，对应就是methods对象中的key
+            let val = h3Dom.getAttribute(':style') // fn
+            // 遍历对比查找
+            for (const fnName in methods) {
+                if (val == fnName) { // 找到了
+                    let targetFn = methods[fnName]
+                    let styleObj = targetFn()
+                    // 动态给标签元素，添加样式
+                    for (const key in styleObj) {
+                        // 原生js语法
+                        h3Dom.style[key] = styleObj[key]
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

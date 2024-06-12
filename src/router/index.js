@@ -31,9 +31,27 @@ export const routes =  [
         name: "driver.js示例",
         component: () => import('@/page/six/index.vue')
     },
+    {
+        path: "/seven",
+        name: "html2canvas",
+        component: () => import('@/page/seven/index.vue')
+    },
+    {
+        path: "/eight",
+        name: "仿vue的{{}}",
+        component: () => import('@/page/eight/index.vue')
+    },
+    {
+        path: "/nine",
+        name: "仿vue的:style",
+        component: () => import('@/page/nine/index.vue')
+    },
+    {
+        path: "/ten",
+        name: "xgplayer",
+        component: () => import('@/page/ten/index.vue')
+    },
 ]
-
-
 
 const router = createRouter({
     history: createWebHashHistory(),
