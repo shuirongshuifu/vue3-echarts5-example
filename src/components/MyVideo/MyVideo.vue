@@ -3,11 +3,26 @@
 </template>
 
 <script setup>
-import { ref, onMounted, reactive, computed } from 'vue';
+import { ref, onMounted, reactive, computed, watch } from 'vue';
 import Player, { Events } from 'xgplayer'; // 引入西瓜视频模块
 import 'xgplayer/dist/index.min.css'; // 引入西瓜视频样式
 
 import { conf } from "./conf"; // 配置文件单独拎出来
+
+import { useCtrlDrag } from "@/hook/ctrlDrag";
+const { onMonitor, offMonitor } = useCtrlDrag()
+
+// 是否可以拖拽视频
+const props = defineProps({
+    disabledDrag: {
+        type: Boolean,
+        default: false
+    }
+})
+
+watch(() => props.disabledDrag, (newVal) => {
+    newVal ? onMonitor() : offMonitor()
+})
 
 defineOptions({ name: 'MyVideo' })
 
@@ -21,6 +36,9 @@ const init = () => {
     player = new Player({
         ...conf
     });
+
+    props.disabledDrag ? onMonitor() : offMonitor()
+
     player.on(Events.PLAY, (ev) => {
         console.log('-播放开始-', ev);
     })

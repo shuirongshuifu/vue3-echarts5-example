@@ -51,6 +51,11 @@ export const routes =  [
         name: "xgplayer",
         component: () => import('@/page/ten/index.vue')
     },
+    {
+        path: "/11",
+        name: "视频不可拖拽",
+        component: () => import('@/page/11/index.vue')
+    },
 ]
 
 const router = createRouter({
