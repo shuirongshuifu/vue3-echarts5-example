@@ -56,6 +56,16 @@ export const routes =  [
         name: "视频不可拖拽",
         component: () => import('@/page/11/index.vue')
     },
+    {
+        path: "/12",
+        name: "修改饿了么源码",
+        component: () => import('@/page/12/index.vue')
+    },
+    {
+        path: "/13",
+        name: "卡片翻页倒计时",
+        component: () => import('@/page/13/index.vue')
+    },
 ]
 
 const router = createRouter({
