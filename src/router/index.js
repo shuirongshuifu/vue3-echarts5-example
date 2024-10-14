@@ -63,7 +63,7 @@ export const routes =  [
     },
     {
         path: "/13",
-        name: "卡片翻页倒计时",
+        name: "tree的箭头",
         component: () => import('@/page/13/index.vue')
     },
 ]
