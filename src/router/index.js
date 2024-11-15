@@ -66,6 +66,11 @@ export const routes =  [
         name: "tree的箭头",
         component: () => import('@/page/13/index.vue')
     },
+    {
+        path: "/14",
+        name: "裁剪",
+        component: () => import('@/page/14/index.vue')
+    },
 ]
 
 const router = createRouter({

@@ -3,6 +3,9 @@ import './style.css'
 import App from './App.vue'
 import router from './router/index'
 
+import VueCropper from 'vue-cropper'; 
+import 'vue-cropper/dist/index.css'
+
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElIcons from '@element-plus/icons-vue'
@@ -17,5 +20,7 @@ app.use(install)
 
 app.use(router)
 app.use(ElementPlus)
+
+app.use(VueCropper)
 
 app.mount('#app')
