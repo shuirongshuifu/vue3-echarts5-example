@@ -47,6 +47,15 @@
       :data="data"
       :props="defaultProps"
     />
+    <div class="tree6">
+      <!-- 官方api icon字符串时值为饿了么图标的组件里面的图标名 -->
+      <el-tree
+        class="myTree6"
+        style="max-width: 600px"
+        :data="data"
+        :props="defaultProps"
+      />
+    </div>
   </div>
 </template>
 
@@ -168,6 +177,12 @@ const defaultProps = {
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
+  }
+}
+
+.tree6 {
+  ::v-deep .el-tree-node__expand-icon::before {
+    content: "->";
   }
 }
 </style>
