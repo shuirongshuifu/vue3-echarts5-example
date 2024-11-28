@@ -71,6 +71,16 @@ export const routes =  [
         name: "裁剪",
         component: () => import('@/page/14/index.vue')
     },
+    {
+        path: "/15",
+        name: "live2d-render",
+        component: () => import('@/page/15/index.vue')
+    },
+    {
+        path: "/16",
+        name: "live2d",
+        component: () => import('@/page/16/index.vue')
+    },
 ]
 
 const router = createRouter({
