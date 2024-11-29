@@ -78,8 +78,13 @@ export const routes =  [
     },
     {
         path: "/16",
-        name: "live2d",
+        name: "pixi-live2d-display",
         component: () => import('@/page/16/index.vue')
+    },
+    {
+        path: "/17",
+        name: "pixi-live2d",
+        component: () => import('@/page/17/index.vue')
     },
 ]
 

@@ -1,8 +1,6 @@
 <template>
   <div class="canvasWrap">
     <canvas id="myCanvas" />
-    <br /><br />
-    <button @click="act">动作变换</button>
   </div>
 </template>
 
@@ -10,7 +8,7 @@
 import { onMounted, onBeforeUnmount } from "vue";
 
 import * as PIXI from "pixi.js";
-import { Live2DModel, SoundManager  } from "pixi-live2d-display/cubism4"; // 只需要 Cubism 4
+import { Live2DModel } from "pixi-live2d-display/cubism4"; // 只需要 Cubism 4
 
 window.PIXI = PIXI; // 为了pixi-live2d-display内部调用
 
@@ -38,8 +36,7 @@ const init = async () => {
   });
   // 引入live2d模型文件
   model = await Live2DModel.from("/live2d/Haru/Haru.model3.json", {
-    autoInteract: false, // 关闭眼睛自动跟随功能（默认为true）
-    autoUpdate: true, // 开启人物自动变化（默认为true）
+    autoInteract: false, // 关闭眼睛自动跟随功能
   });
   // 调整live2d模型文件缩放比例（文件过大，需要缩小）
   model.scale.set(0.12);
@@ -48,28 +45,6 @@ const init = async () => {
   model.x = -24;
   // 把模型添加到舞台上
   app.stage.addChild(model);
-
-  // 需autoInteract为true才能触发
-  model.on("hit", (hitAreaNames) => {
-    console.log("hitAreaNames", hitAreaNames);
-    if (hitAreaNames.includes("body")) {
-      // body is hit
-    }
-  });
-};
-
-const act = () => {
-  console.log("act");
-
-  // 表情
-  model.internalModel.motionManager.expressionManager.setRandomExpression();
-  
-  // model.motion("tap_body", 0);
-  // model.motion('tap_body').then((res)=>{
-  //   console.log('res', res);
-  // }).catch((err)=>{
-  //   console.log('err', err);
-  // })
 };
 </script>
 
