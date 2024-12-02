@@ -14,8 +14,8 @@ import { onMounted, onBeforeUnmount } from "vue";
 import * as PIXI from "pixi.js";
 import { Live2DModel } from "pixi-live2d-display/cubism4"; // 只需要 Cubism 4
 
-// import audioFile from "@/assets/sounds/jp.wav";
-import audioFile from "@/assets/sounds/jp2.wav";
+import audioFile from "@/assets/sounds/jp.wav";
+// import audioFile from "@/assets/sounds/jp2.wav";
 // import audioFile from "@/assets/sounds/xiaosan.mp3";
 // import audioFile from "@/assets/sounds/girlSing.mp3";
 
@@ -42,7 +42,8 @@ const init = async () => {
     backgroundAlpha: 0,
   });
   // 引入live2d模型文件
-  model = await Live2DModel.from("/live2d/haru2/haru_greeter_t03.model3.json", {
+  // model = await Live2DModel.from("/live2d/haru2/haru_greeter_t03.model3.json", {
+  model = await Live2DModel.from("/live2d/Haru/Haru.model3.json", {
     autoInteract: false, // 关闭眼睛自动跟随功能（默认为true）
     autoUpdate: true, // 开启人物自动变化（默认为true）
   });
@@ -73,12 +74,19 @@ const expressionFn = () => {
 };
 
 const mouthFn = () => {
-  let n = Math.random();
-  console.log("随机数0~1控制嘴巴Y轴高度-->", n);
-  model.internalModel.coreModel.setParameterValueById("ParamMouthOpenY", n);
+
+  console.log("随机数0~1控制嘴巴Y轴高度-->", model.internalModel.coreModel.setParameterValueById);
+
+  // model.expression(0)
+  // let n = Math.random();
+  // console.log("随机数0~1控制嘴巴Y轴高度-->", n);
+  // model.internalModel.coreModel.setParameterValueById("ParamMouthOpenY", n);
 };
 
 const speakFn = async () => {
+
+  model.expression(0)
+
   // 请求加载一个音频文件
   const response = await fetch(audioFile);
   // 将音频读取为原始的二进制数据缓冲区（ArrayBuffer）。音频本身是二进制格式，要先将其加载为 ArrayBuffer 才能进一步处理
