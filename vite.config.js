@@ -11,4 +11,11 @@ export default defineConfig({
     },
   },
   plugins: [vue()],
+  server: {
+    port: 9876,
+    host: true,
+    open: true,
+    // https: true,
+    proxy: {},
+  },
 })
