@@ -42,7 +42,6 @@ const init = async () => {
     backgroundAlpha: 0,
   });
   // 引入live2d模型文件
-  // model = await Live2DModel.from("/live2d/haru2/haru_greeter_t03.model3.json", {
   model = await Live2DModel.from("/live2d/Haru/Haru.model3.json", {
     autoInteract: false, // 关闭眼睛自动跟随功能（默认为true）
     autoUpdate: true, // 开启人物自动变化（默认为true）
@@ -74,18 +73,16 @@ const expressionFn = () => {
 };
 
 const mouthFn = () => {
-
-  console.log("随机数0~1控制嘴巴Y轴高度-->", model.internalModel.coreModel.setParameterValueById);
-
-  // model.expression(0)
-  // let n = Math.random();
-  // console.log("随机数0~1控制嘴巴Y轴高度-->", n);
-  // model.internalModel.coreModel.setParameterValueById("ParamMouthOpenY", n);
+  model.expression(0);
+  setInterval(() => {
+    let n = Math.random();
+    console.log("随机数0~1控制嘴巴Y轴高度-->", n);
+    model.internalModel.coreModel.setParameterValueById("ParamMouthOpenY", n);
+  }, 100);
 };
 
 const speakFn = async () => {
-
-  model.expression(0)
+  model.expression(0);
 
   // 请求加载一个音频文件
   const response = await fetch(audioFile);
@@ -161,6 +158,6 @@ onBeforeUnmount(() => {
   height: 360px;
 }
 button {
-  margin: 0 12px;
+  margin: 12px;
 }
 </style>

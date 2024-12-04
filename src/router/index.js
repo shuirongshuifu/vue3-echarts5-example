@@ -83,7 +83,7 @@ export const routes =  [
     },
     {
         path: "/17",
-        name: "pixi-live2d",
+        name: "某某",
         component: () => import('@/page/17/index.vue')
     },
 ]
