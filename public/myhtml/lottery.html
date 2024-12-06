@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 12px;
+            overflow: hidden;
+        }
+
+        .wrap {
+            zoom: 1.5;
+        }
+
+        .ssq,
+        .dlt {
+            border: 1px solid #e9e9e9;
+            padding: 12px;
+            box-sizing: border-box;
+            width: 240px;
+            border-radius: 6px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+        }
+
+        .btn {
+            font-size: 14px;
+            position: relative;
+            color: #111111;
+            text-transform: uppercase;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            padding: 12px 20px;
+            display: inline-flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+
+            -webkit-tap-highlight-color: transparent;
+            /* 移除iOS和Android上的点击高亮 */
+            -webkit-touch-callout: none;
+            /* 移除iOS长按时出现的弹出菜单 */
+            -webkit-user-select: none;
+            /* 禁用文本选择 */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            /* 针对Webkit内核浏览器（如Chrome和Safari） */
+            outline: none;
+            /* 移除聚焦时的轮廓线 */
+
+        }
+
+        .btn:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            border-radius: 28px;
+            background: rgba(255, 171, 157, 0.5);
+            width: 45px;
+            height: 45px;
+            transition: all 0.3s ease;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn svg {
+            position: relative;
+            top: 0;
+            margin-left: 10px;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke: #111111;
+            stroke-width: 2;
+            transform: translateX(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover:before {
+            width: 100%;
+            background: #FFAB9D;
+        }
+
+        .btn:hover svg {
+            transform: translateX(0);
+        }
+
+        .btn:hover,
+        .btn:focus {
+            color: #111111;
+        }
+
+        .btn:active {
+            color: #111111;
+            transform: scale(0.96);
+        }
+
+        .center {
+            display: flex;
+            justify-content: center;
+            margin: 12px 0;
+        }
+
+        .g {
+            margin: 0 6px;
+        }
+
+        .sz {
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="ssq">
+            <div class="center sz">
+                <span class="red1">0 , 0 , 0 , 0 , 0 , 0</span><span class="g">-</span><span class="blue1">0</span>
+            </div>
+            <div class="center">
+                <div class="btn btn1">
+                    <span>选双色球号，并复制</span>
+                    <svg width="13px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="dlt">
+            <div class="center sz">
+                <span class="red2">0 , 0 , 0 , 0 , 0 , 0</span><span class="g">-</span><span class="blue2">0</span>
+            </div>
+            <div class="center">
+                <div class="btn btn2">
+                    <span>选大乐透号，并复制</span>
+                    <svg width="13px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let red1 = document.querySelector('.red1')
+        let blue1 = document.querySelector('.blue1')
+        let btn1 = document.querySelector('.btn1')
+
+        let red2 = document.querySelector('.red2')
+        let blue2 = document.querySelector('.blue2')
+        let btn2 = document.querySelector('.btn2')
+
+        // 双色球选号
+        btn1.onclick = () => {
+            function generateDoubleColorBallNumbers() {
+                let redBalls = [];
+                // 使用Set来优化生成不重复红色球号码的过程
+                const redBallSet = new Set();
+                while (redBallSet.size < 6) {
+                    let num = Math.floor(Math.random() * 33) + 1;
+                    redBallSet.add(num);
+                }
+                redBalls = [...redBallSet];
+                redBalls.sort((a, b) => a - b);
+
+                // 生成1个蓝色球号码，范围是1到16，允许与红色球号码重复
+                let blueBall = Math.floor(Math.random() * 16) + 1;
+
+                // 返回包含7个数字的数组，保持blueBall在最后
+                return [...redBalls, blueBall];
+            }
+            let result = generateDoubleColorBallNumbers();
+            red1.innerHTML = result.slice(0, 6).join(", ")
+            blue1.innerHTML = result[6]
+            copyContent(red1, blue1)
+        }
+
+        // 大乐透选号
+        btn2.onclick = () => {
+            function generateDoubleChromosphereNumbers() {
+                let frontBalls = [];
+                // 使用Set来优化生成不重复前区号码的过程
+                const frontBallSet = new Set();
+                while (frontBallSet.size < 5) {
+                    let num = Math.floor(Math.random() * 35) + 1;
+                    frontBallSet.add(num);
+                }
+                frontBalls = [...frontBallSet];
+                frontBalls.sort((a, b) => a - b);
+
+                let backBalls = [];
+                // 使用Set来优化生成不重复后区号码的过程
+                const backBallSet = new Set();
+                while (backBallSet.size < 2) {
+                    let num = Math.floor(Math.random() * 12) + 1;
+                    backBallSet.add(num);
+                }
+                backBalls = [...backBallSet];
+                backBalls.sort((a, b) => a - b);
+
+                // 返回前区5个号码和后区2个号码
+                return [...frontBalls, ...backBalls];
+            }
+            let result = generateDoubleChromosphereNumbers();
+            red2.innerHTML = result.slice(0, 5).join(", ")
+            blue2.innerHTML = result.slice(5, 7).join(", ")
+            copyContent(red2, blue2)
+        }
+
+        // 复制号码
+        function copyContent(rDom, bDom) {
+            // 获取红球和蓝球的内容
+            const redBallContent = rDom.innerText;
+            const blueBallContent = bDom.innerText;
+
+            // 拼接成一个完整的字符串
+            const fullContent = redBallContent + ' - ' + blueBallContent;
+
+            // 判断浏览器是否支持 Clipboard API
+            if (navigator.clipboard) {
+                // 使用 Clipboard API 将内容复制到剪贴板
+                navigator.clipboard.writeText(fullContent)
+                    .then(() => {
+                        console.log('复制成功', fullContent);
+                    })
+                    .catch(err => {
+                        alert('复制失败: ' + err);
+                    });
+            } else {
+                // 兼容低版本浏览器或不支持 Clipboard API 的环境
+                const textArea = document.createElement('textarea');
+                textArea.value = fullContent;
+                textArea.style.position = 'fixed';  // 防止页面跳动
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    const successful = document.execCommand('copy'); // 执行复制命令
+                    if (successful) {
+                        console.log('复制成功', fullContent);
+                    } else {
+                        alert('复制失败');
+                    }
+                } catch (err) {
+                    alert('复制失败: ' + err);
+                } finally {
+                    document.body.removeChild(textArea);  // 清理临时创建的 textarea 元素
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

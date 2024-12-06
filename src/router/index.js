@@ -83,7 +83,7 @@ export const routes =  [
     },
     {
         path: "/17",
-        name: "某某",
+        name: "lottery彩票",
         component: () => import('@/page/17/index.vue')
     },
 ]

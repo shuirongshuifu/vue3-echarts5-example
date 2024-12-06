@@ -1,22 +1,38 @@
 <template>
   <div class="apc">
-    <div class="nav">
-      <button :class="{ hl: $route.path == item.path }" v-for="(item, index) in routes" :key="index" @click="
-        $router.push({
-          path: item.path,
-        })
-        ">
+    <div class="nav" v-show="!isMobile">
+      <button
+        :class="{ hl: $route.path == item.path }"
+        v-for="(item, index) in routes"
+        :key="index"
+        @click="
+          $router.push({
+            path: item.path,
+          })
+        "
+      >
         {{ item.name }}
       </button>
     </div>
     <div class="rv">
       <router-view></router-view>
+      <div class="op" @click="isMobile = !isMobile">
+        {{ isMobile ? "显示" : "隐藏" }}菜单
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { routes } from "./router/index";
+import { IsPhone } from "./utils/index";
+import { onMounted, ref } from "vue";
+
+const isMobile = ref(false);
+
+onMounted(() => {
+  isMobile.value = IsPhone();
+});
 </script>
 
 <style scoped lang="less">
@@ -45,9 +61,19 @@ import { routes } from "./router/index";
   }
 
   .rv {
-    width: calc(100% - 72px);
+    flex: 1;
     height: 100%;
     padding: 12px;
+    position: relative;
+
+    .op {
+      position: absolute;
+      top: 0;
+      right: 0;
+      user-select: none;
+      cursor: pointer;
+      font-size: 13px;
+    }
   }
 }
 </style>
