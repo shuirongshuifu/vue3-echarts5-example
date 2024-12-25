@@ -86,6 +86,11 @@ export const routes =  [
         name: "lottery彩票",
         component: () => import('@/page/17/index.vue')
     },
+    {
+        path: "/18",
+        name: "命令式弹框",
+        component: () => import('@/page/18/index.vue')
+    },
 ]
 
 const router = createRouter({
