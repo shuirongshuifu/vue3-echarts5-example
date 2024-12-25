@@ -91,6 +91,11 @@ export const routes =  [
         name: "命令式弹框",
         component: () => import('@/page/18/index.vue')
     },
+    {
+        path: "/19",
+        name: "音频&字幕",
+        component: () => import('@/page/19/index.vue')
+    },
 ]
 
 const router = createRouter({
