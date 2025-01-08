@@ -24,7 +24,7 @@ onMounted(() => {
 
 const getVvtData = async () => {
   // 获取当前字幕文件的路径
-  const vvtUrl = new URL("./1.vvt", import.meta.url).href;
+  const vvtUrl = new URL("/subtitles/1.vvt", import.meta.url).href;
   // 使用fetch请求，此路径下的字幕文件
   const response = await fetch(vvtUrl);
   // 状态判断
