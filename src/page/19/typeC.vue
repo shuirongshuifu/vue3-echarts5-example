@@ -78,9 +78,6 @@ const updateSubtitle = (curTime) => {
 
 onMounted(() => {
   getVvtData();
-  setTimeout(() => {
-    console.log("subtitles", subtitles.value);
-  }, 100);
 });
 
 const getVvtData = async () => {

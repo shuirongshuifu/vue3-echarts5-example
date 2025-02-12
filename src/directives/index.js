@@ -1,9 +1,11 @@
 // 引入各个自定义指令
 import stick from "./stick/index";
+import focus from "./focus/index";
 
 // 自定义指令对象，用于遍历注册
 const directives = {
     stick,
+    focus,
 }
 
 // 批量注册指令并暴露到main.js中去便于注册use

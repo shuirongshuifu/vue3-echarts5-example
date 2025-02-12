@@ -1,6 +1,7 @@
 import { ref, h, createVNode, render } from 'vue';
 import { ElDialog } from 'element-plus';
-import dialogCom from './dialogCom.vue';
+import bodyComponents from './bodyComponents.vue';
+import footerComponents from './footerComponents.vue';
 
 // 布尔值变量
 const dialogVisible = ref(false);
@@ -15,15 +16,15 @@ const openDialog = (comAttrs, dialogAttrs) => {
         document.body.appendChild(container);
         // 创建虚拟dom节点，并render
         const vnode = createVNode(ElDialog, {
-            modelValue: dialogVisible.value,
             title: '我是标题',
             width: 800,
-            // onClosed: () => closeDialog(),
-            // onClose: () => closeDialog(),
             // 合并传递进来的el-dialog的属性参数
-            ...dialogAttrs
+            ...dialogAttrs,
+            modelValue: dialogVisible.value,
         }, {
-            default: () => h(dialogCom, { comAttrs }),
+            default: () => h(bodyComponents, { comAttrs }),
+            // 可拓展footer
+            footer: () => h(footerComponents),
         });
         render(vnode, container);
     }
@@ -32,7 +33,6 @@ const openDialog = (comAttrs, dialogAttrs) => {
 const closeDialog = () => {
     dialogVisible.value = false;
     if (container) {
-        document.querySelector("#myBgAudio")?.play();
         render(null, container); // 清除渲染的内容
         container.remove();
         container = null;

@@ -27,6 +27,7 @@ const open = () => {
       ElMessageBox.confirm("Are you sure to close this dialog?")
         .then(() => {
           done();
+          closeDialog()
         })
         .catch(() => {
           // catch error

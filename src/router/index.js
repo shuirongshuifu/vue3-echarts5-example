@@ -96,6 +96,11 @@ export const routes =  [
         name: "音频&字幕",
         component: () => import('@/page/19/index.vue')
     },
+    {
+        path: "/20",
+        name: "el-table单选",
+        component: () => import('@/page/20/index.vue')
+    },
 ]
 
 const router = createRouter({

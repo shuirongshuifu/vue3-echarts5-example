@@ -1,12 +1,11 @@
 <template>
-  <transition name="fade">
-    <div class="dialogBox">
-      <div>传递的参数：</div>
-      <pre>
+  <div class="dialogBox">
+    <div>传递的参数：</div>
+    <pre>
         {{ comAttrs }}
-      </pre>
-    </div>
-  </transition>
+      </pre
+    >
+  </div>
 </template>
 
 <script setup>
