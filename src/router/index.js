@@ -101,6 +101,16 @@ export const routes =  [
         name: "el-table单选",
         component: () => import('@/page/20/index.vue')
     },
+    {
+        path: "/21",
+        name: "点击外部区域",
+        component: () => import('@/page/21/index.vue')
+    },
+    {
+        path: "/22",
+        name: "zip解压",
+        component: () => import('@/page/22/index.vue')
+    },
 ]
 
 const router = createRouter({
