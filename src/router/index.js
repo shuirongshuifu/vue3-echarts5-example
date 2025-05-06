@@ -111,10 +111,31 @@ export const routes =  [
         name: "zip解压",
         component: () => import('@/page/22/index.vue')
     },
+    {
+        path: "/23",
+        name: "鱼骨图",
+        component: () => import('@/page/23/index.vue')
+    },
+    {
+        path: "/24",
+        name: "穿梭框",
+        component: () => import('@/page/24/index.vue')
+    },
+    {
+        path: "/25",
+        name: "数字跑马灯",
+        component: () => import('@/page/25/index.vue')
+    },
+    {
+        path: "/26",
+        name: "小车道路动画",
+        component: () => import('@/page/26/index.vue')
+    },
 ]
 
 const router = createRouter({
-    history: createWebHistory('/extraPro'),
+    // history: createWebHistory('/extraPro'),
+    history: createWebHistory(),
     routes
 })
 

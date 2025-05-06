@@ -1,16 +1,11 @@
 <template>
   <div class="apc">
     <div class="nav" v-show="!isMobile">
-      <button
-        :class="{ hl: $route.path == item.path }"
-        v-for="(item, index) in routes"
-        :key="index"
-        @click="
-          $router.push({
-            path: item.path,
-          })
-        "
-      >
+      <button :class="{ hl: $route.path == item.path }" v-for="(item, index) in routes" :key="index" @click="
+        $router.push({
+          path: item.path,
+        })
+        ">
         {{ item.name }}
       </button>
     </div>
@@ -42,17 +37,23 @@ onMounted(() => {
   display: flex;
 
   .nav {
-    width: 150px;
-    height: 100%;
+    width: 260px;
+    height: 98vh;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     border-right: 1px solid #e9e9e9;
+    flex-direction: column;
 
     button {
-      margin: 6px;
+      margin: 4px;
       cursor: pointer;
       padding: 2px;
+      width: 120px;
+      height: 36px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .hl {

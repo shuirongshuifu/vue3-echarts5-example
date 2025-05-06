@@ -6,7 +6,8 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig(({ command, mode }) => {
     const isProduction = mode === 'production';
     const config = {
-        base: isProduction ? '/extraPro/' : '/',
+        // base: isProduction ? '/extraPro/' : '/',
+        base: '/',
         resolve: {
             // 别名
             alias: {
