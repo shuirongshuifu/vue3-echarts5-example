@@ -131,6 +131,11 @@ export const routes =  [
         name: "小车道路动画",
         component: () => import('@/page/26/index.vue')
     },
+    {
+        path: "/27",
+        name: "animation事件",
+        component: () => import('@/page/27/index.vue')
+    },
 ]
 
 const router = createRouter({
