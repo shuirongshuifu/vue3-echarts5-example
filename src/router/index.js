@@ -136,6 +136,21 @@ export const routes =  [
         name: "animation事件",
         component: () => import('@/page/27/index.vue')
     },
+    {
+        path: "/28",
+        name: "拖拽示例1",
+        component: () => import('@/page/28/index.vue')
+    },
+    {
+        path: "/29",
+        name: "拖拽示例2",
+        component: () => import('@/page/29/index.vue')
+    },
+    {
+        path: "/30",
+        name: "方向键切换",
+        component: () => import('@/page/30/index.vue')
+    },
 ]
 
 const router = createRouter({
