@@ -9,12 +9,12 @@
             </el-table>
           </div>
           <div class="t2">
-            <el-table height="400" :data="tableData2" border style="width: 100%">
+            <el-table ref="table2" height="400" :data="tableData2" border style="width: 100%">
               <el-table-column prop="way" label="对应策略管理办法" align="center" />
             </el-table>
           </div>
           <div class="t3">
-            <el-table :data="tableData3" border style="width: 100%; margin-left: 24px;">
+            <el-table ref="table3" :data="tableData3" border style="width: 100%; margin-left: 24px;">
               <el-table-column prop="way" label="可选策略" align="center" />
             </el-table>
           </div>
@@ -65,26 +65,38 @@ const tableData3 = ref([
   { way: '躺平摆烂' },
 ])
 
+const table2 = ref(null);
+const table3 = ref(null);
+
 onMounted(() => {
   setTimeout(() => {
     initDarg();
-  }, 500);
+  }, 0);
 })
 
 const curTd = ref(null); // 当前拖拽的td   
 
 const initDarg = () => {
   // 允许t3的单元格被拖拽
-  document.querySelectorAll('.t3 tbody tr').forEach((tr, index) => {
-    tr.children[0].draggable = true;
-    tr.children[0].dataset.index = index;
-    tr.children[0].style.cursor = 'move';
-  })
+  const t3Rows = table3.value.$el.querySelectorAll('tbody tr');
+  t3Rows.forEach((tr, index) => {
+    const td = tr.querySelector('td');
+    if (td) {
+      td.draggable = true;
+      td.dataset.index = index;
+      td.style.cursor = 'move';
+    }
+  });
+
   // 允许t2的单元格被放置上去
-  document.querySelectorAll('.t2 tbody tr').forEach((tr, index) => {
-    tr.children[0].classList.add('flag');
-    tr.children[0].dataset.index = index;
-  })
+  const t2Rows = table2.value.$el.querySelectorAll('tbody tr');
+  t2Rows.forEach((tr, index) => {
+    const td = tr.querySelector('td');
+    if (td) {
+      td.classList.add('flag');
+      td.dataset.index = index;
+    }
+  });
   // 拖拽开始事件
   dragBoxWrap.value.ondragstart = (e) => {
     if (!e.target.innerText) {
@@ -95,6 +107,7 @@ const initDarg = () => {
     // 存一份
     curTd.value = e.target;
   }
+  // 拖拽悬浮事件
   dragBoxWrap.value.ondragover = (e) => {
     // 允许元素被拖拽放上去
     if (
@@ -103,6 +116,7 @@ const initDarg = () => {
       e.preventDefault();
     }
   };
+  // 拖拽放下事件
   dragBoxWrap.value.ondrop = (e) => {
     if (!curTd.value.innerText) {
       return;

@@ -14,6 +14,9 @@
       <div class="op" @click="isMobile = !isMobile">
         {{ isMobile ? "显示" : "隐藏" }}菜单
       </div>
+      <div class="op2" @click="window.open('https://github.com/shuirongshuifu/vue3-echarts5-example')">
+        <img :src="github">
+      </div>
     </div>
   </div>
 </template>
@@ -22,6 +25,7 @@
 import { routes } from "./router/index";
 import { IsPhone } from "./utils/index";
 import { onMounted, ref } from "vue";
+import github from "./assets/icon/github.png";
 
 const isMobile = ref(false);
 
@@ -75,6 +79,38 @@ onMounted(() => {
       cursor: pointer;
       font-size: 13px;
     }
+
+    .op2 {
+      position: absolute;
+      top: 28px;
+      right: 12px;
+      user-select: none;
+      cursor: pointer;
+      font-size: 13px;
+
+      img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        box-shadow: 0 0 5px #ccc;
+        animation: rotate 60s linear infinite;
+        transition: all 0.3s;
+      }
+
+      img:hover {
+        animation-play-state: paused;
+      }
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }
 </style>
