@@ -1,11 +1,16 @@
 <template>
   <div class="apc">
     <div class="nav" v-show="!isMobile">
-      <button :class="{ hl: $route.path == item.path }" v-for="(item, index) in routes" :key="index" @click="
-        $router.push({
-          path: item.path,
-        })
-        ">
+      <button
+        :class="{ hl: $route.path == item.path }"
+        v-for="(item, index) in routes"
+        :key="index"
+        @click="
+          $router.push({
+            path: item.path,
+          })
+        "
+      >
         {{ item.name }}
       </button>
     </div>
@@ -14,8 +19,8 @@
       <div class="op" @click="isMobile = !isMobile">
         {{ isMobile ? "显示" : "隐藏" }}菜单
       </div>
-      <div class="op2" @click="window.open('https://github.com/shuirongshuifu/vue3-echarts5-example')">
-        <img :src="github">
+      <div class="op2" @click="jumpToGithub">
+        <img :src="github" />
       </div>
     </div>
   </div>
@@ -32,6 +37,10 @@ const isMobile = ref(false);
 onMounted(() => {
   isMobile.value = IsPhone();
 });
+
+const jumpToGithub = () => {
+  window.open("https://github.com/shuirongshuifu/vue3-echarts5-example");
+};
 </script>
 
 <style scoped lang="less">
