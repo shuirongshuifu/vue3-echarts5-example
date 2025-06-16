@@ -68,7 +68,6 @@ const changeRoute = (path) => {
     flex-direction: column;
     align-items: center;
     position: relative;
-    z-index: 99999;
 
     .mySelect {
       position: fixed;
@@ -102,6 +101,8 @@ const changeRoute = (path) => {
     height: 100%;
     padding: 12px;
     position: relative;
+    min-width: 720px;
+    overflow-y: auto;
 
     .op {
       position: absolute;
