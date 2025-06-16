@@ -151,6 +151,11 @@ export const routes =  [
         name: "方向键切换",
         component: () => import('@/page/30/index.vue')
     },
+    {
+        path: "/31",
+        name: "两种方式星号高亮",
+        component: () => import('@/page/31/index.vue')
+    },
 ]
 
 const router = createRouter({

@@ -1,16 +1,12 @@
 <template>
   <div class="apc">
     <div class="nav" v-show="!isMobile">
-      <button
-        :class="{ hl: $route.path == item.path }"
-        v-for="(item, index) in routes"
-        :key="index"
-        @click="
-          $router.push({
-            path: item.path,
-          })
-        "
-      >
+      <el-select class="mySelect" filterable v-model="vvv" placeholder="请选择" @change="changeRoute(vvv)">
+        <el-option v-for="item in routes" :key="item.path" :label="item.name" :value="item.path" />
+      </el-select>
+      <div class="line"></div>
+      <button :class="{ hl: $route.path == item.path }" v-for="(item, index) in routes" :key="index"
+        @click="changeRoute(item.path)">
         {{ item.name }}
       </button>
     </div>
@@ -31,15 +27,28 @@ import { routes } from "./router/index";
 import { IsPhone } from "./utils/index";
 import { onMounted, ref } from "vue";
 import github from "./assets/icon/github.png";
+import { useRouter, useRoute } from "vue-router";
+const router = useRouter();
+
+const vvv = ref("");
+const route = useRoute();
 
 const isMobile = ref(false);
 
 onMounted(() => {
   isMobile.value = IsPhone();
+  vvv.value = route.path;
 });
 
 const jumpToGithub = () => {
   window.open("https://github.com/shuirongshuifu/vue3-echarts5-example");
+};
+
+const changeRoute = (path) => {
+  router.push({
+    path: path,
+  });
+  vvv.value = path;
 };
 </script>
 
@@ -50,23 +59,37 @@ const jumpToGithub = () => {
   display: flex;
 
   .nav {
-    width: 260px;
+    width: 180px;
     height: 98vh;
     box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
     border-right: 1px solid #e9e9e9;
+    overflow-y: auto;
+    display: flex;
     flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 99999;
+
+    .mySelect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 160px;
+    }
+
+    .line {
+      width: 100%;
+      height: 1px;
+      background-color: #e9e9e9;
+      margin-top: 36px;
+    }
 
     button {
-      margin: 4px;
+      margin: 3px 0;
       cursor: pointer;
-      padding: 2px;
-      width: 120px;
+      padding: 2px 1px;
+      width: 150px;
       height: 36px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
 
     .hl {
