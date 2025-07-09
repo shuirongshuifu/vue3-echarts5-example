@@ -156,6 +156,11 @@ export const routes =  [
         name: "两种方式星号高亮",
         component: () => import('@/page/31/index.vue')
     },
+    {
+        path: "/32",
+        name: "tab刷新状态保留",
+        component: () => import('@/page/32/index.vue')
+    },
 ]
 
 const router = createRouter({
