@@ -161,6 +161,11 @@ export const routes =  [
         name: "tab刷新状态保留",
         component: () => import('@/page/32/index.vue')
     },
+    {
+        path: "/33",
+        name: "右键菜单",
+        component: () => import('@/page/33/index.vue')
+    },
 ]
 
 const router = createRouter({
